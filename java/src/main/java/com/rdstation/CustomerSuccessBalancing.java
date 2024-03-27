@@ -14,9 +14,15 @@ public class CustomerSuccessBalancing {
 		Set<Integer> uniqueScores = new HashSet<>();
 	    for (CustomerSuccess cs : customerSuccess) {
 	        if (!uniqueScores.add(cs.getScore())) {
-	            throw new IllegalArgumentException("Os scores dos Customer Success devem ser únicos.");
+	            throw new IllegalArgumentException("The scores of Customer Success must be unique.");
 	        }
 	    }
+	    
+	    int maxAwayCustomerSuccess = customerSuccess.size() / 2;
+	    if (customerSuccessAway.size() > maxAwayCustomerSuccess) {
+	        throw new IllegalArgumentException("The number of unavailable Customer Success exceeds the permitted limit.");
+	    }
+	    
 		this.customerSuccess = customerSuccess;
 		this.customers = customers;
 		this.customerSuccessAway = customerSuccessAway;
